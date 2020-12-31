@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ExoPlayerScaffolding</string>
+    <string name="error_playing_video_message">Error playing video</string>
+    <string name="test_url">https://res.cloudinary.com/dmt6cqcbv/video/upload/v1609343420/chatowl/KAROL_G_Nicki_Minaj_-_Tusa_Official_Video.mp3</string>
+</resources>
