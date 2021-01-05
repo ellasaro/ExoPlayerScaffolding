@@ -1,10 +1,10 @@
 package com.example.exoplayerscaffolding
 
 import android.Manifest
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -16,9 +16,9 @@ import com.google.android.exoplayer2.trackselection.*
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_fullscreen.*
 
-class MainActivity : AppCompatActivity(), Player.EventListener {
+class FullscreenActivity : AppCompatActivity(), Player.EventListener {
 
     private var mExoPlayer: SimpleExoPlayer? = null
     private var mExoPlayerCurrentPosition: Long = 0
@@ -26,15 +26,14 @@ class MainActivity : AppCompatActivity(), Player.EventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_fullscreen)
 
-        activity_main_image_button_fullscreen.setOnClickListener {
-            startActivity(Intent(this, FullscreenActivity::class.java))
+        activity_fullscreen_image_button_back.setOnClickListener {
+            finish()
         }
 
         initializePlayer()
         checkInternetPermission()
-
     }
 
     // PERMISSIONS
@@ -77,7 +76,7 @@ class MainActivity : AppCompatActivity(), Player.EventListener {
             val trackSelector: TrackSelector = DefaultTrackSelector(this, videoTrackSelectionFactory)
             mExoPlayer = SimpleExoPlayer.Builder(this).setTrackSelector(trackSelector).build()
             mExoPlayer?.addListener(this)
-            activity_main_playerview.player = mExoPlayer
+            activity_fullscreen_playerview.player = mExoPlayer
             loadUriIntoPlayer(Uri.parse(getString(R.string.test_url)))
         }
     }
@@ -91,8 +90,8 @@ class MainActivity : AppCompatActivity(), Player.EventListener {
         val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(mediaUri)
 
         if(mediaUri.toString().contains(".mp3", true)) {
-            activity_main_playerview.defaultArtwork = ContextCompat.getDrawable(this, R.drawable.background_artwork)
-            activity_main_playerview.useArtwork = true
+            activity_fullscreen_playerview.defaultArtwork = ContextCompat.getDrawable(this, R.drawable.background_artwork)
+            activity_fullscreen_playerview.useArtwork = true
         }
 
         mExoPlayer?.prepare(mediaSource)
@@ -111,6 +110,7 @@ class MainActivity : AppCompatActivity(), Player.EventListener {
 
     public override fun onResume() {
         super.onResume()
+        hideSystemUiFullScreen()
         if (mCurrentUri != null) {
             initializePlayer()
             loadUriIntoPlayer(mCurrentUri!!)
@@ -121,5 +121,23 @@ class MainActivity : AppCompatActivity(), Player.EventListener {
     public override fun onPause() {
         super.onPause()
         releasePlayer()
+        hideSystemUi()
+    }
+
+    private fun hideSystemUiFullScreen() {
+        activity_fullscreen_playerview.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+    }
+
+    private fun hideSystemUi() {
+        activity_fullscreen_playerview.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
+                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
     }
 }

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/activity_main_playerview"
+        android:id="@+id/activity_fullscreen_playerview"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,13 +17,13 @@
         app:show_buffering="when_playing" />
 
     <ImageButton
-        android:id="@+id/activity_main_image_button_fullscreen"
+        android:id="@+id/activity_fullscreen_image_button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_baseline_fullscreen_24"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
