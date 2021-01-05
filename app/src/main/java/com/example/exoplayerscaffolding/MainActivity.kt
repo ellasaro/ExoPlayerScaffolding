@@ -4,7 +4,11 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowInsetsController
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -17,6 +21,7 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_exo_player_controls.*
 
 class MainActivity : AppCompatActivity(), Player.EventListener {
 
@@ -28,7 +33,9 @@ class MainActivity : AppCompatActivity(), Player.EventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        activity_main_image_button_fullscreen.setOnClickListener {
+        header_tv.text = getString(R.string.video_header)
+
+        secondary_action_im.setOnClickListener {
             startActivity(Intent(this, FullscreenActivity::class.java))
         }
 

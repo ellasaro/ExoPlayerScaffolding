@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".FullscreenActivity" android:screenOrientation="landscape" />
+        <activity android:name=".FullscreenActivity" android:screenOrientation="reverseLandscape" />
     </application>
 
 </manifest>

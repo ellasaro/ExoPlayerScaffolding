@@ -17,6 +17,7 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import kotlinx.android.synthetic.main.activity_fullscreen.*
+import kotlinx.android.synthetic.main.layout_exo_player_controls.*
 
 class FullscreenActivity : AppCompatActivity(), Player.EventListener {
 
@@ -28,7 +29,9 @@ class FullscreenActivity : AppCompatActivity(), Player.EventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fullscreen)
 
-        activity_fullscreen_image_button_back.setOnClickListener {
+        header_tv.text = getString(R.string.video_header)
+
+        secondary_action_im.setOnClickListener {
             finish()
         }
 

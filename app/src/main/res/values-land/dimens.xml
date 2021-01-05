@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  EXO PLAYER  -->
+    <dimen name="margin_player_control">32dp</dimen>
+    <dimen name="margin_player_control_small">8dp</dimen>
+
+    <dimen name="padding_player_position_separator">4dp</dimen>
+
+    <dimen name="size_player_control">32dp</dimen>
+    <dimen name="size_player_control_small">24dp</dimen>
+
+    <dimen name="text_size_player_position">16sp</dimen>
+    <dimen name="text_size_player_video_header">24sp</dimen>
+
+</resources>

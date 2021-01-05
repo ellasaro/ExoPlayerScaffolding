@@ -8,21 +8,19 @@
         android:id="@+id/activity_main_playerview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        app:controller_layout_id="@layout/layout_exo_player_controls"
+        app:fastforward_increment="15000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:rewind_increment="15000"
         app:show_buffering="when_playing" />
 
-    <ImageButton
-        android:id="@+id/activity_main_image_button_fullscreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_baseline_fullscreen_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
