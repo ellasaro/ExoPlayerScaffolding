@@ -29,6 +29,8 @@ class FullscreenActivity : AppCompatActivity(), Player.EventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fullscreen)
 
+        hideSystemUiFullScreen()
+
         header_tv.text = getString(R.string.video_header)
 
         secondary_action_im.setOnClickListener {
@@ -113,7 +115,6 @@ class FullscreenActivity : AppCompatActivity(), Player.EventListener {
 
     public override fun onResume() {
         super.onResume()
-        hideSystemUiFullScreen()
         if (mCurrentUri != null) {
             initializePlayer()
             loadUriIntoPlayer(mCurrentUri!!)
@@ -124,20 +125,11 @@ class FullscreenActivity : AppCompatActivity(), Player.EventListener {
     public override fun onPause() {
         super.onPause()
         releasePlayer()
-        hideSystemUi()
     }
 
     private fun hideSystemUiFullScreen() {
         activity_fullscreen_playerview.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
                 or View.SYSTEM_UI_FLAG_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
-    }
-
-    private fun hideSystemUi() {
-        activity_fullscreen_playerview.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
